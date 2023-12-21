@@ -11,7 +11,7 @@
   onMount(()=>{
 
     const r = new Rive({
-        src: "../new_file.riv",
+        src: "../public/new_file.riv",
         // Or the path to a public Rive asset
         // src: '/public/example.riv',
         // @ts-ignore
