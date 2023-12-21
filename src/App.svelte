@@ -6,12 +6,13 @@
   let heading
   let ballClick
   let ballClick2
+  let isBtnPressed = false
   
 
   onMount(()=>{
 
     const r = new Rive({
-        src: "../new_file.riv",
+        src: "/new_file.riv",
         // Or the path to a public Rive asset
         // src: '/public/example.riv',
         // @ts-ignore
@@ -46,6 +47,14 @@
 
     gsap.from(heading.querySelectorAll('.word'), { y: 100, opacity: 0, stagger: 0.05, ease: "power1.inOut"})
   })
+
+  function btnPressed(e){
+      const btn = e.target
+      btn.classList.toggle('active')
+      
+  }
+
+
 </script>
 
 <main>
@@ -54,8 +63,10 @@
       <h1 bind:this={heading} class="font-grotesk heading text-4xl text-center mt-[100px] max-w-[700px] font-semibold"> Click to Bounce the Ball! </h1>
      </div>
 <div class="flex gap-6 mx-auto w-fit text-center -500:flex-col mt-8">
-  <div class="w-fit  border-2 rounded-xl border-black p-5 cursor-pointer" bind:this={ballClick}>Start Bouncing</div>
-  <div class="w-fit border-2 rounded-xl border-black p-5 cursor-pointer" bind:this={ballClick2}>Stop Bouncing</div>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class:active={isBtnPressed} class={`w-fit border-2 rounded-xl border-black p-5 cursor-pointer`} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick}>Start Bouncing</div>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class:active={isBtnPressed} class={`w-fit border-2 rounded-xl border-black p-5 cursor-pointer`} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick2}>Stop Bouncing</div>
 </div>
      <!-- <div id="canvas"></div> -->
      <canvas class="mx-auto max-w-[600px] w-[110%] max-h-[600px] mt-8 flex" id="canvas"></canvas>
@@ -65,6 +76,8 @@
 
 <style>
 
-
+  .active{
+    transform: scale(0.9);
+  }
 
 </style>
