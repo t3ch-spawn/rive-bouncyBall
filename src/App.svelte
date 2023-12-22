@@ -81,7 +81,7 @@
   <div class={`w-fit bounce-btns border-2 rounded-xl scale-100 border-black p-5 cursor-pointer`} on:mouseleave={cursorAway} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick2}>Stop Bouncing</div>
 </div>
      <!-- <div id="canvas"></div> -->
-     <canvas class="mx-auto max-w-[600px] w-[110%] max-h-[600px] mt-8 flex" id="canvas"></canvas>
+     <canvas class=" mx-auto max-w-[600px] w-full max-h-[600px] mt-8 flex" id="canvas"></canvas>
 
 
 </main>
