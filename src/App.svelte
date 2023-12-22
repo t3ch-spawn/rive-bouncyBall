@@ -45,13 +45,25 @@
     // const heading = document.querySelector('.heading')
     let headingChars = new SplitType('.heading', {types: "words"})
 
-    gsap.from(heading.querySelectorAll('.word'), { y: 100, opacity: 0, stagger: 0.05, ease: "power1.inOut"})
+    gsap.timeline().from(heading.querySelectorAll('.word'), { y: 100, opacity: 0, stagger: 0.05, ease: "power1.inOut"})
+    .from(document.querySelectorAll('.bounce-btns'), {
+        y: 200,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.25,
+        ease: 'power1.inOut'
+    })
+
   })
 
   function btnPressed(e){
       const btn = e.target
       btn.classList.toggle('active')
-      
+      console.log(btn)
+  }
+
+  function cursorAway(e){
+      e.target.classList.remove('active')
   }
 
 
@@ -62,11 +74,11 @@
      <div class="w-full flex justify-center overflow-hidden">
       <h1 bind:this={heading} class="font-grotesk heading text-4xl text-center mt-[100px] max-w-[700px] font-semibold"> Click to Bounce the Ball! </h1>
      </div>
-<div class="flex gap-6 mx-auto w-fit text-center -500:flex-col mt-8">
+<div class="flex gap-6 mx-auto w-fit text-center -500:flex-col mt-8 overflow-hidden">
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class:active={isBtnPressed} class={`w-fit border-2 rounded-xl border-black p-5 cursor-pointer`} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick}>Start Bouncing</div>
+  <div  class={`w-fit bounce-btns border-2 rounded-xl scale-100 border-black p-5 cursor-pointer`} on:mouseleave={cursorAway} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick}>Start Bouncing</div>
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class:active={isBtnPressed} class={`w-fit border-2 rounded-xl border-black p-5 cursor-pointer`} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick2}>Stop Bouncing</div>
+  <div class={`w-fit bounce-btns border-2 rounded-xl scale-100 border-black p-5 cursor-pointer`} on:mouseleave={cursorAway} on:mouseup={btnPressed} on:mousedown={btnPressed} bind:this={ballClick2}>Stop Bouncing</div>
 </div>
      <!-- <div id="canvas"></div> -->
      <canvas class="mx-auto max-w-[600px] w-[110%] max-h-[600px] mt-8 flex" id="canvas"></canvas>
@@ -76,8 +88,10 @@
 
 <style>
 
-  .active{
-    transform: scale(0.9);
+
+  .bounce-btns.active{
+    transform: scale(0.9) !important;
+    transition: 0.2s;
   }
 
 </style>
