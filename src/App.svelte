@@ -12,16 +12,16 @@
   onMount(()=>{
 
     const r = new Rive({
-        src: "/new_file.riv",
+        src: "/eye_ball.riv",
         // Or the path to a public Rive asset
         // src: '/public/example.riv',
         // @ts-ignore
         canvas: document.getElementById("canvas"),
         autoplay: true,
-        stateMachines: "State Machine 1",
+        stateMachines: "eye ball Bounce",
         onLoad: () => {
           r.resizeDrawingSurfaceToCanvas();
-          const inputs = r.stateMachineInputs('State Machine 1')
+          const inputs = r.stateMachineInputs('eye ball Bounce')
           console.log(inputs)
           // @ts-ignore
           const startBounce = inputs.find((input)=> {input.runtimeInput.name == "start"})
@@ -40,7 +40,7 @@
 
         },
         // @ts-ignore
-        stateMachines: 'State Machine 1'
+        stateMachines: 'eye ball Bounce'
     });
     // const heading = document.querySelector('.heading')
     let headingChars = new SplitType('.heading', {types: "words"})
